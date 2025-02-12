@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\WellnessCategoryResource\Pages;
-use App\Filament\Resources\WellnessCategoryResource\RelationManagers;
-use App\Models\WellnessCategory;
+use App\Filament\Resources\HealthParameterResource\Pages;
+use App\Filament\Resources\HealthParameterResource\RelationManagers;
+use App\Models\HealthParameter;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class WellnessCategoryResource extends Resource
+class HealthParameterResource extends Resource
 {
-    protected static ?string $model = WellnessCategory::class;
+    protected static ?string $model = HealthParameter::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -56,9 +56,9 @@ class WellnessCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListWellnessCategories::route('/'),
-            'create' => Pages\CreateWellnessCategory::route('/create'),
-            'edit' => Pages\EditWellnessCategory::route('/{record}/edit'),
+            'index' => Pages\ListHealthParameters::route('/'),
+            'create' => Pages\CreateHealthParameter::route('/create'),
+            'edit' => Pages\EditHealthParameter::route('/{record}/edit'),
         ];
     }
 }

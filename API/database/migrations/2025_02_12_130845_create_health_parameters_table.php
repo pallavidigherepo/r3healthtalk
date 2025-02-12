@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wellness_categories', function (Blueprint $table) {
+        Schema::create('health_parameters', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('subcategory_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wellness_categories');
+        Schema::dropIfExists('health_parameters');
     }
 };
