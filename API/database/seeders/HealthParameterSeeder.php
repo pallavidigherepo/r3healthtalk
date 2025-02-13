@@ -39,6 +39,27 @@ class HealthParameterSeeder extends Seeder
         HealthParameter::create(['name' => 'BMI > 23', 'subcategory_id' => $bca->id]);
 
         $metabolicSyndrome = Subcategory::where('name', 'Metabolic Syndrome')->first();
+        HealthParameter::create(['name' => 'HIP/WAIST Ratio Men > 1, Women > 0.80', 'subcategory_id' => $metabolicSyndrome->id]);
+        HealthParameter::create(['name' => 'Blood Pressure (HIGH)', 'subcategory_id' => $metabolicSyndrome->id]);
+        HealthParameter::create(['name' => 'Sugar (HIGH)', 'subcategory_id' => $metabolicSyndrome->id]);
+        HealthParameter::create(['name' => 'TG (HIGH)', 'subcategory_id' => $metabolicSyndrome->id]);
+        HealthParameter::create(['name' => 'HLD (Low)', 'subcategory_id' => $metabolicSyndrome->id]);
+
+        $hormonalIssues = Subcategory::where('name', 'Hormonal Issues')->first();
+        HealthParameter::create(['name' => 'Thyroid', 'subcategory_id' => $hormonalIssues->id]);
+        HealthParameter::create(['name' => 'SkinIssue/Hairfall', 'subcategory_id' => $hormonalIssues->id]);
+        HealthParameter::create(['name' => 'Sleeping Disorder', 'subcategory_id' => $hormonalIssues->id]);
+        HealthParameter::create(['name' => 'Mental Health Issue', 'subcategory_id' => $hormonalIssues->id]);
+        HealthParameter::create(['name' => 'PCOD', 'subcategory_id' => $hormonalIssues->id]);
+        HealthParameter::create(['name' => 'Fatigue', 'subcategory_id' => $hormonalIssues->id]);
+
+        $gutHealth = Subcategory::where('name', 'Gut Health')->first();
+        HealthParameter::create(['name' => 'Acidity', 'subcategory_id' => $gutHealth->id]);
+        HealthParameter::create(['name' => 'Bloating/Gas/Excess Burping', 'subcategory_id' => $gutHealth->id]);
+        HealthParameter::create(['name' => 'IBS', 'subcategory_id' => $gutHealth->id]);
+        HealthParameter::create(['name' => 'Constipation', 'subcategory_id' => $gutHealth->id]);
+        HealthParameter::create(['name' => 'Gall Bladder Problems', 'subcategory_id' => $gutHealth->id]);
+
     }
 }
 
