@@ -19,8 +19,8 @@ return new class extends Migration
             $table->float('weight')->nullable();
             $table->float('height')->nullable();
             $table->string('mentor')->nullable();
-            $table->json('wellness');  // ✅ Storing wellness data as JSON
-            $table->json('symptoms');  // ✅ Storing symptoms data as JSON
+            $table->json('wellness'); 
+            $table->json('symptoms');  
             $table->timestamps();
         });
     }

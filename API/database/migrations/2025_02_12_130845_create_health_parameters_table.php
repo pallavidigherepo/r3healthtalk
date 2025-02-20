@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('subcategory_id')->constrained()->onDelete('cascade');
-            $table->boolean('is_active')->default(true);
+            // $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

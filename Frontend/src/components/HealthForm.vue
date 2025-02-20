@@ -16,11 +16,11 @@
   
   const wellnessScore = ref({
     "Nutri-Score": [
-      "Raw Food 1% of Body Weight Daily",
-      "Plant-Based Whole Food Diet Only",
-      "10 Glasses of Water Daily",
-      "No Sugar / Caffeine",
-      "No Binge Eating",
+        "Raw Food 1% of Body Weight Daily",
+        "Plant-Based Whole Food Diet Only",
+        "10 Glasses of Water Daily",
+        "No Sugar / Caffeine",
+        "No Binge Eating",
     ],
     "If Score": [
         "140+               -OPTIMUM                    +5",
