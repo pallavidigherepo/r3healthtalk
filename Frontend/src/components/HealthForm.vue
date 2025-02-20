@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  
+  import axios from "axios";
   const form = ref({
     name: "",
     dob: "",
@@ -53,44 +53,50 @@
     "GUT Health": ["Acidity", "Bloating/Gas/Excess Burping", "IBS", "Constipation", "Gall Bladder Problems"],
   });
 
-  // **Initialize the form properly to prevent undefined errors**
   const initializeForm = () => {
   for (const category in wellnessScore.value) {
     if (!form.value.wellness[category]) {
-      form.value.wellness[category] = {}; // Ensure category exists
+      form.value.wellness[category] = {}; 
     }
     wellnessScore.value[category].forEach((item) => {
       if (form.value.wellness[category][item] === undefined) {
-        form.value.wellness[category][item] = false; // Initialize checkbox values
+        form.value.wellness[category][item] = false; 
       }
     });
   }
 
   for (const category in symptomsScore.value) {
     if (!form.value.symptoms[category]) {
-      form.value.symptoms[category] = {}; // Ensure category exists
+      form.value.symptoms[category] = {}; 
     }
     symptomsScore.value[category].forEach((item) => {
       if (form.value.symptoms[category][item] === undefined) {
-        form.value.symptoms[category][item] = false; // Initialize checkbox values
+        form.value.symptoms[category][item] = false; 
       }
     });
   }
 };
 
-//Run this function on mount
+
 onMounted(() => {
   initializeForm();
 });
 
-const submitForm = () => {
-  console.log("Form Data:", form.value);
+const submitForm = async () => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/api/health-scores", form.value);
+    alert("Health Score saved successfully!");
+    console.log("Success:", response.data);
+  } catch (error) {
+    console.error("Error saving health score:", error.response?.data);
+    alert("Failed to save health score. Please try again.");
+  }
 };
 </script>
 
 <template>
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-      <!-- Header -->
+      
       <div class="flex justify-between border-b pb-4">
         <h2 class="text-xl font-bold">Health Score Form</h2>
         <span class="text-gray-600 text-sm">Date: {{ currentDate }}</span>
@@ -105,9 +111,9 @@ const submitForm = () => {
       <input v-model="form.mentor" type="text" placeholder="Mentor's Name" class="input" />
     </div>
 
-      <!-- Wellness & Symptoms Score Side by Side -->
+  
       <div class="grid grid-cols-2 gap-6 mt-6">
-        <!-- Wellness Score (Left Column) -->
+        
         <div class="border p-4 rounded-lg">
           <h3 class="text-lg font-bold text-blue-600 text-center bg-blue-100 py-2">WELLNESS SCORE</h3>
           <p class="text-sm text-gray-600 text-center">YES - 1 | NO - 0</p>
@@ -121,7 +127,7 @@ const submitForm = () => {
           </div>
         </div>
   
-        <!-- Symptoms Score (Right Column) -->
+        
         <div class="border p-4 rounded-lg">
           <h3 class="text-lg font-bold text-red-600 text-center bg-red-100 py-2">SYMPTOMS SCORE</h3>
           <p class="text-sm text-gray-600 text-center">YES - 1 | NO - 0</p>
@@ -136,7 +142,7 @@ const submitForm = () => {
         </div>
       </div>
   
-      <!-- Submit Button -->
+     
       <div class="mt-6 text-center">
         <button @click="submitForm" class="btn">Submit</button>
       </div>
